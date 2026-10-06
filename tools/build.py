@@ -1,5 +1,12 @@
-import re, os
+import re, os, hashlib
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def version(rel):
+    """Short content hash, appended as ?v= so browsers drop a cached old copy."""
+    return hashlib.sha1(open(os.path.join(ROOT, rel), "rb").read()).hexdigest()[:8]
+
+CSS_V = version("style.css")
+JS_V = version("assets/site.js")
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
@@ -28,7 +35,7 @@ def head(r, title, desc, cls=""):
 <meta name="description" content="{desc}">
 <link rel="icon" href="{r}assets/favicon.png" type="image/png">
 {fonts}
-<link rel="stylesheet" href="{r}style.css">
+<link rel="stylesheet" href="{r}style.css?v={CSS_V}">
 </head>
 <body>
 '''
@@ -61,7 +68,7 @@ def footer(r):
     return f'''<footer class="site-footer">
   © 2026 LumaRay Software LLC · <a href="{r}privacy/">{L("Privacy", "Privacidade")}</a> · <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a>
 </footer>
-<script src="{r}assets/site.js"></script>
+<script src="{r}assets/site.js?v={JS_V}"></script>
 </body>
 </html>
 '''
