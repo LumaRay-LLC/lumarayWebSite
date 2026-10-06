@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" class="theme-wetab">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WeTab — Privacy Policy</title>
+<meta name="description" content="How the WeTab app handles your information.">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="bar">
+    <a class="logo-link" href="../../"><img src="../../assets/logo-tile.jpg" alt="LumaRay Software logo"><div><span>LUMARAY</span><small>SOFTWARE</small></div></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Site">
+    <a href="../../"><span data-lang-block="en">Home</span><span data-lang-block="pt" lang="pt-BR">Início</span></a>
+    <a href="../../next-chapter/"><img src="../../assets/next-chapter.png" alt="">Next Chapter</a>
+    <a href="../../wetab/" aria-current="page"><img src="../../assets/wetab.png" alt="">WeTab</a>
+    <a href="../../pantry-stock/"><img src="../../assets/pantry-stock.png" alt="">Pantry Stock</a>
+    <a href="../../privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a>
+  </nav>
+</header>
+<main class="page">
+  <section class="product-hero">
+    <img src="../../assets/wetab.png" alt="WeTab app icon">
+    <div><h1>WeTab</h1><p><span data-lang-block="en">Privacy Policy</span><span data-lang-block="pt" lang="pt-BR">Política de Privacidade</span></p></div>
+  </section>
+  <nav class="subtabs" aria-label="Product">
+    <a href="../"><span data-lang-block="en">Overview</span><span data-lang-block="pt" lang="pt-BR">Visão geral</span></a>
+    <a href="../privacy/" aria-current="page"><span data-lang-block="en">Privacy Policy</span><span data-lang-block="pt" lang="pt-BR">Política de Privacidade</span></a>
+    <a href="mailto:lumaraysoftware@gmail.com?subject=wetab%20support"><span data-lang-block="en">Support</span><span data-lang-block="pt" lang="pt-BR">Suporte</span></a>
+  </nav>
+
+  <!-- ============================== ENGLISH ============================== -->
+  <article id="en" lang="en" class="policy" data-lang-block="en">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective October 6, 2026 · Last updated October 6, 2026</p>
+
+    <p>This Privacy Policy explains how LumaRay Software LLC (“we,” “us”) handles information when you use the WeTab app for iPhone (the “App”), a bill-splitting app that records a receipt, tracks who had which items and charges each person for their share.</p>
+
+    <aside class="summary">
+      <h2>The short version</h2>
+      <ul>
+        <li>We don't run servers of our own. Your receipts and balances live in <strong>your own private iCloud</strong>, which we can't read.</li>
+        <li>When you send a charge or an invite, a small record goes to the App's <strong>public iCloud database</strong> so the other person can see it. That record includes your name and, if you set one, your <strong>Pix key</strong>.</li>
+        <li>Receipt reading happens on your device. Photos of receipts are not saved or uploaded.</li>
+        <li>No ads, no analytics, no tracking, no third-party SDKs, no in-app purchases.</li>
+        <li>Profile › Delete my data erases everything the App stored in iCloud, including charges you've sent.</li>
+      </ul>
+    </aside>
+
+    <h2>1. Information the App handles</h2>
+
+    <h3>Your name and sign-in</h3>
+    <p>You can start using the App by typing a name, or by using Sign in with Apple. Sign in with Apple is optional and requests <strong>only your name</strong>. The App never asks for or receives your email address. If you use it, the App also keeps an anonymous user identifier that Apple provides for this App. Your name, the Apple identifier and your session are stored in the iOS Keychain on your device.</p>
+
+    <h3>Your Pix key</h3>
+    <p>You can add a Pix key in your profile so people know where to pay you. It is stored in the Keychain on your device and included in every charge you send (see “Charges and invites” below). Pix keys can be a phone number, email, CPF/CNPJ or a random key. <strong>If you don't want to share personal details, use a random Pix key.</strong></p>
+
+    <h3>Receipts, people and balances</h3>
+    <p>The receipts you record (place, date, items, prices, service charge), the people you add, who had what, and the resulting balances are stored in a private zone of your iCloud database (Apple CloudKit), under your Apple Account. This data is protected by Apple's iCloud security, and we have no access to it. The names of the people you add are entered by you; please add only what's needed to split the bill.</p>
+
+    <h3>Charges and invites</h3>
+    <p>To let someone see what they owe, even if you share nothing else with them, the App writes a small record to the App's <strong>public iCloud database</strong> when you send a charge or invite someone. A charge record contains:</p>
+    <ul>
+      <li>your name and the name of the person being charged;</li>
+      <li>the place, the date, their amount and a summary of the items they had;</li>
+      <li>your Pix key, if you set one;</li>
+      <li>its status (open or paid), an 8-character access code, and the iCloud user identifiers of both sides once they are known.</li>
+    </ul>
+    <p>When the other person opens the charge or accepts an invite, the App writes a reply record (for example, “opened” or “I've paid”) with their name and iCloud identifier, so the two of you are connected for future charges.</p>
+    <p class="callout">Records in the public database are readable by other users of the App through the iCloud servers, and the access code works like a link: anyone who has it can open the charge. As the developer, we can technically view these records using Apple's CloudKit tools. We do so only when needed to run or fix the App, or when required by law. <strong>Your balances are never written to the public database.</strong></p>
+
+    <h3>Messages you send</h3>
+    <p>When you send a charge, the App opens the iOS share sheet with a message containing the place, items, amount, your Pix key, the code and a <code>wetab://</code> link. You choose where to send it (for example WhatsApp or Messages). Once sent, that message is handled by the service you chose, under its own privacy policy.</p>
+
+    <h3>Camera and photos</h3>
+    <p>The camera is used only to read a receipt. Text recognition happens on your device using Apple's VisionKit and Vision frameworks. You can also pick a photo of a receipt: iOS's photo picker gives the App only the photo you choose, and the App does not ask for access to your library. Receipt images are not saved, not uploaded and not used for anything else.</p>
+
+    <h3>Notifications</h3>
+    <p>The App uses iCloud push notifications to tell you when someone charges you, sends a reminder, opens your charge, says they've paid, confirms your payment or accepts your invite. The notification text (names, place and amount) is composed by Apple's iCloud from the charge record. Notifications are sent through Apple Push Notification service.</p>
+
+    <h3>Clipboard</h3>
+    <p>When you tap “Copy Pix,” the App puts that Pix key on the clipboard so you can paste it in your bank app. The App does not read your clipboard otherwise.</p>
+
+    <h3>What the App doesn't do</h3>
+    <p>The App does not show ads, include analytics or crash-reporting tools, use third-party SDKs, track you across apps and websites, or access your location or contacts. The App does not process payments and has no in-app purchases: Pix transfers happen in your own bank's app.</p>
+
+    <h2>2. How information is used</h2>
+    <ul>
+      <li>To provide the App's features: recording receipts, splitting them and keeping balances.</li>
+      <li>To deliver charges, reminders, payment notices and invites to the people involved.</li>
+      <li>To sync your data across your devices through iCloud.</li>
+      <li>To keep the App secure and to answer you when you contact us.</li>
+    </ul>
+
+    <h2>3. Third-party services</h2>
+    <ul>
+      <li><strong>Apple</strong>: Sign in with Apple, iCloud/CloudKit, Apple Push Notification service, VisionKit (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
+    </ul>
+    <p>We do not sell, rent or share personal information for advertising. Apart from Apple, we disclose information only if required by law or to protect the rights and safety of our users or others.</p>
+
+    <h2>4. Storage and security</h2>
+    <p>Your name, Pix key and sign-in details are kept in the iOS Keychain. iCloud data is protected by Apple, and all network traffic goes over encrypted connections to Apple's servers. No method of storage or transmission is perfectly secure, but we design the App to keep as little data as possible.</p>
+
+    <h2>5. Keeping and deleting your data</h2>
+    <p>We keep your data for as long as it stays in your iCloud account. You decide when it goes:</p>
+    <ul>
+      <li><strong>Delete everything:</strong> in the App, open your profile and tap Delete my data. This erases your receipts, people, balances and invites from iCloud, and every public record you created, including charges already received by other people. It can't be undone.</li>
+      <li><strong>Delete a receipt:</strong> reverses its charges: the entries leave everyone's balance and the public charge record is removed.</li>
+      <li><strong>Delete a person:</strong> removes that person, your balance with them, the charges they could see and their invite.</li>
+      <li><strong>Sign out:</strong> removes your name, Pix key and sign-in details from the device. Your receipts stay in your iCloud and come back when you sign in again with the same iCloud account.</li>
+      <li><strong>From iCloud:</strong> Settings › [your name] › iCloud › Manage Storage › WeTab lets you delete the App's private iCloud data. Use Delete my data in the App to also remove your public records.</li>
+      <li><strong>Charges you received</strong> belong to the person who sent them. Ask them to delete the receipt, or contact us.</li>
+      <li><strong>Camera, notifications and Sign in with Apple</strong> can be turned off at any time in iOS Settings.</li>
+    </ul>
+
+    <h2>6. Your rights</h2>
+    <p>Depending on where you live, laws such as the LGPD (Brazil), the GDPR (EU/UK) and the CCPA (California) give you rights to access, correct, delete or port your personal information, and to object to or restrict its use. You can exercise most of these rights directly using the steps above. For anything else, contact us and we will respond within the time required by law. You may also complain to your local data protection authority.</p>
+
+    <h2>7. Children</h2>
+    <p>The App is not directed to children under 13 (or the minimum age in your country), and we do not knowingly collect their personal information. If you believe a child has given us personal information, contact us and we will delete it.</p>
+
+    <h2>8. International users</h2>
+    <p>Apple may process iCloud data in countries other than yours, under its own safeguards for international transfers.</p>
+
+    <h2>9. Changes to this policy</h2>
+    <p>If we change this policy, we will update the date at the top of this page and, for significant changes, let you know in the App.</p>
+
+    <h2>10. Contact</h2>
+    <p>LumaRay Software LLC<br>
+      <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a></p>
+  </article>
+
+  <!-- ============================= PORTUGUÊS ============================= -->
+  <article id="pt" lang="pt-BR" class="policy" data-lang-block="pt">
+    <h1>Política de Privacidade</h1>
+    <p class="meta">Vigente desde 6 de outubro de 2026 · Última atualização em 6 de outubro de 2026</p>
+
+    <p>Esta Política de Privacidade explica como a LumaRay Software LLC (“nós”) trata as informações quando você usa o app WeTab para iPhone (o “App”), um app de divisão de contas que registra um recibo, marca quem consumiu cada item e cobra cada pessoa pela parte dela.</p>
+
+    <aside class="summary">
+      <h2>Em resumo</h2>
+      <ul>
+        <li>Não mantemos servidores próprios. Seus recibos e saldos ficam no <strong>seu próprio iCloud privado</strong>, que nós não conseguimos ler.</li>
+        <li>Quando você envia uma cobrança ou um convite, um pequeno registro vai para o <strong>banco de dados público do iCloud</strong> do App, para que a outra pessoa consiga vê-lo. Esse registro inclui seu nome e, se cadastrada, sua <strong>chave Pix</strong>.</li>
+        <li>A leitura do recibo acontece no seu aparelho. Fotos de recibos não são salvas nem enviadas.</li>
+        <li>Sem anúncios, sem ferramentas de análise, sem rastreamento, sem SDKs de terceiros e sem compras dentro do App.</li>
+        <li>Perfil › Apagar meus dados apaga tudo o que o App guardou no iCloud, inclusive as cobranças que você enviou.</li>
+      </ul>
+    </aside>
+
+    <h2>1. Informações tratadas pelo App</h2>
+
+    <h3>Seu nome e login</h3>
+    <p>Você pode começar a usar o App digitando um nome ou usando Iniciar sessão com a Apple. O login com a Apple é opcional e pede <strong>apenas o seu nome</strong>. O App nunca pede nem recebe seu e-mail. Se você usar o login com a Apple, o App também guarda um identificador anônimo de usuário que a Apple fornece para este App. Seu nome, o identificador da Apple e a sua sessão ficam salvos no Keychain do iOS no seu aparelho.</p>
+
+    <h3>Sua chave Pix</h3>
+    <p>Você pode cadastrar uma chave Pix no perfil para que as pessoas saibam para onde pagar. Ela fica no Keychain do seu aparelho e vai em toda cobrança que você envia (veja “Cobranças e convites” abaixo). Chaves Pix podem ser telefone, e-mail, CPF/CNPJ ou chave aleatória. <strong>Se não quiser compartilhar dados pessoais, use uma chave aleatória.</strong></p>
+
+    <h3>Recibos, pessoas e saldos</h3>
+    <p>Os recibos que você registra (lugar, data, itens, preços, taxa de serviço), as pessoas que você adiciona, quem consumiu o quê e os saldos resultantes ficam numa zona privada do seu banco de dados do iCloud (Apple CloudKit), vinculada à sua Conta Apple. Esses dados são protegidos pela segurança do iCloud, e nós não temos acesso a eles. Os nomes das pessoas que você adiciona são digitados por você; adicione apenas o necessário para dividir a conta.</p>
+
+    <h3>Cobranças e convites</h3>
+    <p>Para que alguém veja quanto deve, mesmo sem vocês compartilharem mais nada, o App grava um pequeno registro no <strong>banco de dados público do iCloud</strong> do App quando você envia uma cobrança ou convida alguém. Um registro de cobrança contém:</p>
+    <ul>
+      <li>o seu nome e o nome da pessoa cobrada;</li>
+      <li>o lugar, a data, o valor da parte dela e um resumo dos itens que ela consumiu;</li>
+      <li>a sua chave Pix, se cadastrada;</li>
+      <li>a situação (aberta ou paga), um código de acesso de 8 caracteres e os identificadores de usuário do iCloud dos dois lados, quando conhecidos.</li>
+    </ul>
+    <p>Quando a outra pessoa abre a cobrança ou aceita um convite, o App grava um registro de resposta (por exemplo, “abriu” ou “já paguei”) com o nome e o identificador do iCloud dela, para que vocês fiquem conectados nas próximas cobranças.</p>
+    <p class="callout">Registros no banco público podem ser lidos por outros usuários do App através dos servidores do iCloud, e o código de acesso funciona como um link: quem tiver o código consegue abrir a cobrança. Como desenvolvedores, temos tecnicamente acesso a esses registros pelas ferramentas do CloudKit da Apple. Só os acessamos quando necessário para manter ou corrigir o App, ou quando exigido por lei. <strong>Seus saldos nunca vão para o banco público.</strong></p>
+
+    <h3>Mensagens que você envia</h3>
+    <p>Ao enviar uma cobrança, o App abre a folha de compartilhamento do iOS com uma mensagem contendo o lugar, os itens, o valor, sua chave Pix, o código e um link <code>wetab://</code>. Você escolhe para onde mandar (por exemplo, WhatsApp ou Mensagens). Depois de enviada, a mensagem é tratada pelo serviço escolhido, conforme a política de privacidade dele.</p>
+
+    <h3>Câmera e fotos</h3>
+    <p>A câmera é usada apenas para ler um recibo. O reconhecimento do texto acontece no seu aparelho, pelos frameworks VisionKit e Vision da Apple. Você também pode escolher uma foto do recibo: o seletor de fotos do iOS entrega ao App só a foto escolhida, e o App não pede acesso à sua galeria. As imagens dos recibos não são salvas, não são enviadas e não são usadas para mais nada.</p>
+
+    <h3>Notificações</h3>
+    <p>O App usa notificações do iCloud para avisar quando alguém te cobra, envia um lembrete, abre sua cobrança, avisa que pagou, confirma seu pagamento ou aceita seu convite. O texto do aviso (nomes, lugar e valor) é montado pelo iCloud da Apple a partir do registro da cobrança. As notificações são enviadas pelo serviço de notificações push da Apple.</p>
+
+    <h3>Área de transferência</h3>
+    <p>Quando você toca em “Copiar Pix”, o App coloca a chave na área de transferência para você colar no app do banco. Fora isso, o App não lê sua área de transferência.</p>
+
+    <h3>O que o App não faz</h3>
+    <p>O App não exibe anúncios, não inclui ferramentas de análise ou de relatório de falhas, não usa SDKs de terceiros, não rastreia você entre apps e sites e não acessa sua localização nem seus contatos. O App não processa pagamentos e não tem compras dentro do app: as transferências Pix acontecem no app do seu banco.</p>
+
+    <h2>2. Como as informações são usadas</h2>
+    <ul>
+      <li>Para oferecer os recursos do App: registrar recibos, dividi-los e manter os saldos.</li>
+      <li>Para entregar cobranças, lembretes, avisos de pagamento e convites às pessoas envolvidas.</li>
+      <li>Para sincronizar seus dados entre seus aparelhos pelo iCloud.</li>
+      <li>Para manter o App seguro e responder quando você entrar em contato.</li>
+    </ul>
+    <p>Para fins da LGPD, as bases legais são a execução do serviço que você solicitou, o seu consentimento (por exemplo, para câmera e notificações) e o nosso legítimo interesse em manter o App seguro.</p>
+
+    <h2>3. Serviços de terceiros</h2>
+    <ul>
+      <li><strong>Apple</strong>: Iniciar sessão com a Apple, iCloud/CloudKit, notificações push da Apple, VisionKit (<a href="https://www.apple.com/br/legal/privacy/">Política de Privacidade da Apple</a>)</li>
+    </ul>
+    <p>Não vendemos, alugamos nem compartilhamos informações pessoais para publicidade. Além da Apple, só divulgamos informações quando exigido por lei ou para proteger os direitos e a segurança dos nossos usuários ou de terceiros.</p>
+
+    <h2>4. Armazenamento e segurança</h2>
+    <p>Seu nome, sua chave Pix e os dados de login ficam no Keychain do iOS. Os dados no iCloud são protegidos pela Apple, e todo o tráfego de rede passa por conexões criptografadas com os servidores da Apple. Nenhum método de armazenamento ou transmissão é totalmente seguro, mas o App foi feito para guardar o mínimo possível de dados.</p>
+
+    <h2>5. Guarda e exclusão dos seus dados</h2>
+    <p>Mantemos seus dados enquanto eles estiverem na sua conta do iCloud. Você decide quando eles saem:</p>
+    <ul>
+      <li><strong>Apagar tudo:</strong> no App, abra o perfil e toque em Apagar meus dados. Isso apaga do iCloud seus recibos, pessoas, saldos e convites, e todo registro público que você criou, inclusive cobranças que outras pessoas já tinham recebido. Não dá para desfazer.</li>
+      <li><strong>Apagar um recibo:</strong> desfaz as cobranças dele: os lançamentos saem do saldo de todos e o registro público da cobrança é removido.</li>
+      <li><strong>Apagar uma pessoa:</strong> remove a pessoa, o saldo entre vocês, as cobranças que ela via e o convite dela.</li>
+      <li><strong>Sair da conta:</strong> remove do aparelho seu nome, sua chave Pix e os dados de login. Seus recibos continuam no seu iCloud e voltam quando você entrar de novo com a mesma conta do iCloud.</li>
+      <li><strong>No iCloud:</strong> em Ajustes › [seu nome] › iCloud › Gerenciar Armazenamento › WeTab você pode apagar os dados privados do App. Use Apagar meus dados no App para remover também seus registros públicos.</li>
+      <li><strong>Cobranças que você recebeu</strong> pertencem a quem as enviou. Peça para a pessoa apagar o recibo, ou fale conosco.</li>
+      <li><strong>Câmera, notificações e login com a Apple</strong> podem ser desligados a qualquer momento nos Ajustes do iOS.</li>
+    </ul>
+
+    <h2>6. Seus direitos</h2>
+    <p>A Lei Geral de Proteção de Dados (LGPD) garante a você, entre outros, os direitos de confirmar a existência de tratamento, acessar, corrigir, anonimizar, portar e excluir seus dados, revogar o consentimento e se opor ao tratamento. Leis como a GDPR (UE/Reino Unido) e a CCPA (Califórnia) garantem direitos semelhantes. Você pode exercer a maioria desses direitos diretamente pelos passos acima. Para qualquer outra solicitação, fale conosco e responderemos no prazo previsto em lei. Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+    <h2>7. Crianças</h2>
+    <p>O App não é direcionado a menores de 13 anos (ou à idade mínima do seu país), e não coletamos intencionalmente dados pessoais deles. Se você acredita que uma criança nos forneceu dados pessoais, fale conosco e nós os apagaremos.</p>
+
+    <h2>8. Usuários internacionais</h2>
+    <p>A Apple pode tratar os dados do iCloud em países diferentes do seu, com suas próprias salvaguardas para transferências internacionais.</p>
+
+    <h2>9. Alterações nesta política</h2>
+    <p>Se alterarmos esta política, atualizaremos a data no topo desta página e, em mudanças importantes, avisaremos você no App.</p>
+
+    <h2>10. Contato</h2>
+    <p>LumaRay Software LLC<br>
+      <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a></p>
+  </article>
+</main>
+<footer class="site-footer">
+  © 2026 LumaRay Software LLC · <a href="../../privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a> · <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a>
+</footer>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
