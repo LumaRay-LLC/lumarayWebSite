@@ -3,36 +3,100 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Next Chapter</title>
-<meta name="description" content="Next Chapter: your reading quest log and book clubs for iPhone.">
+<title>LumaRay Software</title>
+<meta name="description" content="LumaRay Software LLC is an independent studio making focused, private iPhone apps: Next Chapter, WeTab and Pantry Stock.">
+<link rel="icon" href="assets/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<main class="page">
-  <section class="hero">
-    <h1>Next Chapter</h1>
-    <p>Track your reading, set yearly goals and run book clubs with friends, all synced through your own iCloud.</p>
+<header class="site-header">
+  <div class="bar">
+    <a class="logo-link" href="./"><img src="assets/logo-tile.jpg" alt="LumaRay Software logo"><div><span>LUMARAY</span><small>SOFTWARE</small></div></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Site">
+    <a href="./" aria-current="page"><span data-lang-block="en">Home</span><span data-lang-block="pt" lang="pt-BR">Início</span></a>
+    <a href="next-chapter/"><img src="assets/next-chapter.png" alt="">Next Chapter</a>
+    <a href="wetab/"><img src="assets/wetab.png" alt="">WeTab</a>
+    <a href="pantry-stock/"><img src="assets/pantry-stock.png" alt="">Pantry Stock</a>
+    <a href="privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a>
+  </nav>
+</header>
+<section class="hero-ocean">
+  <img class="logo" src="assets/logo-tile.jpg" alt="LumaRay Software logo">
+  <h1><span data-lang-block="en">Small apps, made with care, that keep your data yours.</span><span data-lang-block="pt" lang="pt-BR">Apps simples, feitos com cuidado, que deixam seus dados com você.</span></h1>
+  <p><span data-lang-block="en">LumaRay Software is an independent studio building focused iPhone apps for everyday life.</span><span data-lang-block="pt" lang="pt-BR">A LumaRay Software é um estúdio independente que cria apps para iPhone focados no dia a dia.</span></p>
+  <div class="cta">
+    <a class="btn primary" href="#apps"><span data-lang-block="en">See our apps</span><span data-lang-block="pt" lang="pt-BR">Conheça os apps</span></a>
+    <a class="btn ghost" href="#contact"><span data-lang-block="en">Contact us</span><span data-lang-block="pt" lang="pt-BR">Fale conosco</span></a>
+  </div>
+  <svg class="waves" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path class="w1" d="M0 38 C240 8 480 8 720 34 C960 60 1200 62 1440 30 L1440 90 L0 90 Z"/>
+    <path class="w2" d="M0 56 C260 30 520 34 760 54 C1000 74 1220 70 1440 48 L1440 90 L0 90 Z"/>
+    <path class="w3" d="M0 72 C240 54 500 56 740 70 C980 84 1220 82 1440 66 L1440 90 L0 90 Z"/>
+  </svg>
+</section>
+
+<main class="page wide">
+  <section id="about">
+    <p class="section-label"><span data-lang-block="en">About</span><span data-lang-block="pt" lang="pt-BR">Sobre</span></p>
+    <h2 class="section-title"><span data-lang-block="en">An independent iOS studio</span><span data-lang-block="pt" lang="pt-BR">Um estúdio independente de iOS</span></h2>
+    <p class="lead" data-lang-block="en">LumaRay Software LLC designs and builds native iPhone apps in Swift and SwiftUI. We pick small, everyday problems (what to read next, who owes what after dinner, what's running out at home) and solve each one with a simple, polished app.</p>
+    <p class="lead" data-lang-block="pt" lang="pt-BR">A LumaRay Software LLC projeta e desenvolve apps nativos para iPhone em Swift e SwiftUI. Escolhemos problemas pequenos do dia a dia (o que ler em seguida, quem deve quanto depois do jantar, o que está acabando em casa) e resolvemos cada um com um app simples e bem acabado.</p>
+    <p class="lead" data-lang-block="en">Like a whale that surfaces only when it needs to, our apps stay out of your way: no accounts to create, no servers collecting your life, just tools that work.</p>
+    <p class="lead" data-lang-block="pt" lang="pt-BR">Como a baleia que só sobe à superfície quando precisa, nossos apps não ficam no seu caminho: sem cadastro obrigatório, sem servidores coletando a sua vida, só ferramentas que funcionam.</p>
   </section>
 
-  <nav class="links" aria-label="Pages">
-    <a class="card" href="mailto:lumaraysoftware@gmail.com?subject=Next%20Chapter%20support">
-      <strong>Support · Suporte</strong>
-      <span>Questions, bugs or feedback? Email lumaraysoftware@gmail.com</span>
-    </a>
-    <a class="card" href="next-chapter/privacy/">
-      <strong>Privacy Policy · Política de Privacidade</strong>
-      <span>How the app handles your information.</span>
-    </a>
-    <a class="card" href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">
-      <strong>Terms of Use · Termos de Uso</strong>
-      <span>Apple's standard license agreement applies to Next Chapter.</span>
-    </a>
-  </nav>
+  <section>
+    <p class="section-label"><span data-lang-block="en">How we work</span><span data-lang-block="pt" lang="pt-BR">Como trabalhamos</span></p>
+    <div class="grid four">
+      <div class="card"><span class="num">01</span><h3><span data-lang-block="en">Your data, your iCloud</span><span data-lang-block="pt" lang="pt-BR">Seus dados, seu iCloud</span></h3><p><span data-lang-block="en">We don't run servers that store your data. It lives on your device and in your own private iCloud.</span><span data-lang-block="pt" lang="pt-BR">Não mantemos servidores com os seus dados. Eles ficam no seu aparelho e no seu iCloud privado.</span></p></div>
+      <div class="card"><span class="num">02</span><h3><span data-lang-block="en">Native and light</span><span data-lang-block="pt" lang="pt-BR">Nativos e leves</span></h3><p><span data-lang-block="en">Built with Apple's own frameworks, with as few third-party SDKs as possible.</span><span data-lang-block="pt" lang="pt-BR">Feitos com os frameworks da própria Apple, com o mínimo possível de SDKs de terceiros.</span></p></div>
+      <div class="card"><span class="num">03</span><h3><span data-lang-block="en">Honest privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade honesta</span></h3><p><span data-lang-block="en">Plain-language policies for every app, and a way to delete your data.</span><span data-lang-block="pt" lang="pt-BR">Políticas em linguagem simples para cada app, e um jeito de apagar seus dados.</span></p></div>
+      <div class="card"><span class="num">04</span><h3><span data-lang-block="en">English and Portuguese</span><span data-lang-block="pt" lang="pt-BR">Inglês e português</span></h3><p><span data-lang-block="en">Every app and page is made for both languages from day one.</span><span data-lang-block="pt" lang="pt-BR">Todo app e toda página nascem nos dois idiomas.</span></p></div>
+    </div>
+  </section>
 
-  <footer>© 2026 LumaRay Software LLC</footer>
+  <section id="apps">
+    <p class="section-label"><span data-lang-block="en">Our apps</span><span data-lang-block="pt" lang="pt-BR">Nossos apps</span></p>
+    <h2 class="section-title"><span data-lang-block="en">Made by LumaRay</span><span data-lang-block="pt" lang="pt-BR">Feitos pela LumaRay</span></h2>
+    <div class="grid">
+      <a class="card app-card" href="next-chapter/">
+        <img src="assets/next-chapter.png" alt="">
+        <h3>Next Chapter</h3>
+        <p><span data-lang-block="en">Your reading quest log: track books, set yearly goals and run book clubs with friends.</span><span data-lang-block="pt" lang="pt-BR">Seu diário de leitura: acompanhe livros, defina metas anuais e organize clubes do livro com amigos.</span></p>
+        <span class="go"><span data-lang-block="en">Learn more →</span><span data-lang-block="pt" lang="pt-BR">Saiba mais →</span></span>
+      </a>
+      <a class="card app-card" href="wetab/">
+        <img src="assets/wetab.png" alt="">
+        <h3>WeTab</h3>
+        <p><span data-lang-block="en">Scan the receipt, tap who had what, and charge everyone their share with Pix.</span><span data-lang-block="pt" lang="pt-BR">Leia o recibo, marque quem consumiu o quê e cobre a parte de cada um com Pix.</span></p>
+        <span class="go"><span data-lang-block="en">Learn more →</span><span data-lang-block="pt" lang="pt-BR">Saiba mais →</span></span>
+      </a>
+      <a class="card app-card" href="pantry-stock/">
+        <img src="assets/pantry-stock.png" alt="">
+        <h3>Pantry Stock</h3>
+        <p><span data-lang-block="en">Keep track of what's at home with − and +, and get a shopping list when things run low.</span><span data-lang-block="pt" lang="pt-BR">Controle o que tem em casa com − e +, e ganhe uma lista de compras quando algo estiver acabando.</span></p>
+        <span class="go"><span data-lang-block="en">Learn more →</span><span data-lang-block="pt" lang="pt-BR">Saiba mais →</span></span>
+      </a>
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact">
+    <h2><span data-lang-block="en">Get in touch</span><span data-lang-block="pt" lang="pt-BR">Fale com a gente</span></h2>
+    <p><span data-lang-block="en">Support, feedback, partnerships or privacy questions:</span><span data-lang-block="pt" lang="pt-BR">Suporte, sugestões, parcerias ou dúvidas sobre privacidade:</span></p>
+    <p><a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a></p>
+  </section>
 </main>
+<footer class="site-footer">
+  © 2026 LumaRay Software LLC · <a href="privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a> · <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a>
+</footer>
+<script src="assets/site.js"></script>
 </body>
 </html>

@@ -1,27 +1,46 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="theme-nextchapter">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Next Chapter — Privacy Policy</title>
 <meta name="description" content="How the Next Chapter app handles your information.">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
+<header class="site-header">
+  <div class="bar">
+    <a class="logo-link" href="../../"><img src="../../assets/logo-tile.jpg" alt="LumaRay Software logo"><div><span>LUMARAY</span><small>SOFTWARE</small></div></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="pt" aria-pressed="false">PT</button>
+    </div>
+  </div>
+  <nav class="tabs" aria-label="Site">
+    <a href="../../"><span data-lang-block="en">Home</span><span data-lang-block="pt" lang="pt-BR">Início</span></a>
+    <a href="../../next-chapter/" aria-current="page"><img src="../../assets/next-chapter.png" alt="">Next Chapter</a>
+    <a href="../../wetab/"><img src="../../assets/wetab.png" alt="">WeTab</a>
+    <a href="../../pantry-stock/"><img src="../../assets/pantry-stock.png" alt="">Pantry Stock</a>
+    <a href="../../privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a>
+  </nav>
+</header>
 <main class="page">
-  <header class="masthead">
-    <a class="brand" href="../../">Next Chapter</a>
-    <nav class="lang" aria-label="Language">
-      <a href="#en" data-lang="en">English</a>
-      <a href="#pt" data-lang="pt">Português</a>
-    </nav>
-  </header>
+  <section class="product-hero">
+    <img src="../../assets/next-chapter.png" alt="Next Chapter app icon">
+    <div><h1>Next Chapter</h1><p><span data-lang-block="en">Privacy Policy</span><span data-lang-block="pt" lang="pt-BR">Política de Privacidade</span></p></div>
+  </section>
+  <nav class="subtabs" aria-label="Product">
+    <a href="../"><span data-lang-block="en">Overview</span><span data-lang-block="pt" lang="pt-BR">Visão geral</span></a>
+    <a href="../privacy/" aria-current="page"><span data-lang-block="en">Privacy Policy</span><span data-lang-block="pt" lang="pt-BR">Política de Privacidade</span></a>
+    <a href="mailto:lumaraysoftware@gmail.com?subject=next-chapter%20support"><span data-lang-block="en">Support</span><span data-lang-block="pt" lang="pt-BR">Suporte</span></a>
+  </nav>
 
   <!-- ============================== ENGLISH ============================== -->
-  <article id="en" lang="en" class="policy">
+  <article id="en" lang="en" class="policy" data-lang-block="en">
     <h1>Privacy Policy</h1>
     <p class="meta">Effective October 6, 2026 · Last updated October 6, 2026</p>
 
@@ -129,7 +148,7 @@
   </article>
 
   <!-- ============================= PORTUGUÊS ============================= -->
-  <article id="pt" lang="pt-BR" class="policy">
+  <article id="pt" lang="pt-BR" class="policy" data-lang-block="pt">
     <h1>Política de Privacidade</h1>
     <p class="meta">Vigente desde 6 de outubro de 2026 · Última atualização em 6 de outubro de 2026</p>
 
@@ -237,28 +256,9 @@
       <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a></p>
   </article>
 </main>
-
-<script>
-  // Shows one language at a time; without JavaScript both stay visible.
-  (function () {
-    var langs = ["en", "pt"];
-    function show(lang) {
-      langs.forEach(function (l) {
-        document.getElementById(l).hidden = l !== lang;
-        document.querySelector('[data-lang="' + l + '"]').setAttribute("aria-current", l === lang ? "true" : "false");
-      });
-      document.documentElement.lang = lang === "pt" ? "pt-BR" : "en";
-    }
-    function fromHash() {
-      var h = location.hash.slice(1);
-      if (langs.indexOf(h) >= 0) return h;
-      return (navigator.language || "").toLowerCase().indexOf("pt") === 0 ? "pt" : "en";
-    }
-    window.addEventListener("hashchange", function () { show(fromHash()); window.scrollTo(0, 0); });
-    show(fromHash());
-    // The #en / #pt anchor would otherwise land below the language switch.
-    window.addEventListener("load", function () { window.scrollTo(0, 0); });
-  })();
-</script>
+<footer class="site-footer">
+  © 2026 LumaRay Software LLC · <a href="../../privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a> · <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a>
+</footer>
+<script src="../../assets/site.js"></script>
 </body>
 </html>
