@@ -1,0 +1,3 @@
+# GitHub Pages runs Jekyll, which skips folders that start with a dot.
+# WeTab's universal links need /.well-known/apple-app-site-association served.
+include: [".well-known"]

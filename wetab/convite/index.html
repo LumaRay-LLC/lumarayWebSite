@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR" class="theme-wetab">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Convite · WeTab</title>
+<meta name="description" content="Abra o convite no WeTab.">
+<meta name="robots" content="noindex">
+<meta name="apple-itunes-app" content="app-id=6806273923">
+<link rel="icon" href="../../assets/favicon.png" type="image/png">
+<link rel="stylesheet" href="../../style.css?v=b0cc0145">
+<style>
+  .open-card { text-align: center; padding: 28px 22px; margin-top: 8px; }
+  .open-card .code { font: 700 34px/1.1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .08em; color: var(--ink); margin: 6px 0 2px; }
+  .open-card .code-label { color: var(--ink-soft); font-size: 14px; }
+  .open-actions { display: grid; gap: 10px; margin-top: 22px; }
+  .open-actions .btn { text-align: center; padding: 16px 20px; border-radius: 999px; }
+  .open-actions .btn.primary { background: #F4EFE9; color: #1A1A1A; }
+  .open-actions .btn.ghost { color: var(--ink); border: 1px solid var(--line); background: #201E1C; }
+  .steps { color: var(--ink-soft); font-size: 15px; margin-top: 18px; }
+  [data-missing] { display: none; }
+</style>
+</head>
+<body data-kind="convite">
+<header class="site-header">
+  <div class="bar">
+    <a class="logo-link" href="../../wetab/"><img src="../../assets/logo-tile.jpg" alt="LumaRay Software logo"><div><span>LUMARAY</span><small>SOFTWARE</small></div></a>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-set-lang="pt" aria-pressed="true">PT</button>
+    </div>
+  </div>
+</header>
+<main class="page">
+  <section class="product-hero">
+    <img src="../../assets/wetab.png" alt="WeTab app icon">
+    <div>
+      <h1><span data-lang-block="pt" lang="pt-BR">Convite</span><span data-lang-block="en">Invite</span></h1>
+      <p><span data-lang-block="pt" lang="pt-BR">Alguém quer dividir contas com você no WeTab.</span><span data-lang-block="en">Someone wants to split bills with you on WeTab.</span></p>
+    </div>
+  </section>
+
+  <div class="card open-card" data-found>
+    <div class="code-label"><span data-lang-block="pt" lang="pt-BR">Código</span><span data-lang-block="en">Code</span></div>
+    <div class="code" id="code">—</div>
+    <div class="open-actions">
+      <a class="btn primary" id="open" href="#"><span data-lang-block="pt" lang="pt-BR">Abrir no WeTab</span><span data-lang-block="en">Open in WeTab</span></a>
+      <a class="btn ghost" href="https://apps.apple.com/app/id6806273923"><span data-lang-block="pt" lang="pt-BR">Baixar o WeTab na App Store</span><span data-lang-block="en">Get WeTab on the App Store</span></a>
+    </div>
+    <p class="steps"><span data-lang-block="pt" lang="pt-BR">Ainda não tem o app? Baixe, entre com sua conta e volte a este link. Se preferir, digite o código em <strong>Recebi um código</strong>, na tela inicial do WeTab.</span><span data-lang-block="en">Don't have the app yet? Get it, sign in and come back to this link. Or type the code under <strong>Recebi um código</strong> on WeTab's home screen.</span></p>
+  </div>
+
+  <div class="card open-card" data-missing>
+    <p><span data-lang-block="pt" lang="pt-BR">Este link está incompleto. Peça para a pessoa enviar de novo pelo WeTab.</span><span data-lang-block="en">This link is incomplete. Ask the person to send it again from WeTab.</span></p>
+  </div>
+</main>
+<script src="../../assets/site.js?v=88398404"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var code = (params.get("k") || "").toUpperCase();
+  var record = params.get("r") || "";
+  var kind = document.body.getAttribute("data-kind");
+  // Only what the app itself generates: an 8-character code and a record name.
+  var validCode = /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/.test(code);
+  var validRecord = record === "" || /^[A-Za-z0-9_.-]{1,200}$/.test(record);
+  if (!validCode || !validRecord) {
+    document.querySelector("[data-found]").style.display = "none";
+    document.querySelector("[data-missing]").style.display = "block";
+    return;
+  }
+  document.getElementById("code").textContent = code;
+  var app = "wetab://" + kind + "/" + encodeURIComponent(code) + (record ? "?r=" + encodeURIComponent(record) : "");
+  document.getElementById("open").setAttribute("href", app);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["64764VK866.com.LumaraySoftware.Wecheck"],
+        "components": [
+          { "/": "/wetab/cobranca/*", "comment": "WeTab charge link" },
+          { "/": "/wetab/convite/*", "comment": "WeTab invite link" }
+        ]
+      }
+    ]
+  }
+}
