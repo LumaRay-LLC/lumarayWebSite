@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../style.css?v=b0cc0145">
+<link rel="stylesheet" href="../../style.css?v=96ce12eb">
 </head>
 <body>
 <header class="site-header">
@@ -42,7 +42,7 @@
   <!-- ============================== ENGLISH ============================== -->
   <article id="en" lang="en" class="policy" data-lang-block="en">
     <h1>Privacy Policy</h1>
-    <p class="meta">Effective October 6, 2026 · Last updated October 6, 2026</p>
+    <p class="meta">Effective October 6, 2026 · Last updated November 16, 2026</p>
 
     <p>This Privacy Policy explains how LumaRay Software LLC (“we,” “us”) handles information when you use the WeTab app for iPhone (the “App”), a bill-splitting app that records a receipt, tracks who had which items and charges each person for their share.</p>
 
@@ -52,7 +52,7 @@
         <li>We don't run servers of our own. Your receipts and balances live in <strong>your own private iCloud</strong>, which we can't read.</li>
         <li>When you send a charge or an invite, a small record goes to the App's <strong>public iCloud database</strong> so the other person can see it. That record includes your name and, if you set one, your <strong>Pix key</strong>.</li>
         <li>Receipt reading happens on your device. Photos of receipts are not saved or uploaded.</li>
-        <li>No ads, no analytics, no tracking, no third-party SDKs, no in-app purchases.</li>
+        <li>No ads, no analytics, no tracking, no third-party SDKs. The optional WeTab Pro subscription is handled entirely by Apple.</li>
         <li>Profile › Delete my data erases everything the App stored in iCloud, including charges you've sent.</li>
       </ul>
     </aside>
@@ -80,31 +80,39 @@
     <p class="callout">Records in the public database are readable by other users of the App through the iCloud servers, and the access code works like a link: anyone who has it can open the charge. As the developer, we can technically view these records using Apple's CloudKit tools. We do so only when needed to run or fix the App, or when required by law. <strong>Your balances are never written to the public database.</strong></p>
 
     <h3>Messages you send</h3>
-    <p>When you send a charge, the App opens the iOS share sheet with a message containing the place, items, amount, your Pix key, the code and a <code>wetab://</code> link. You choose where to send it (for example WhatsApp or Messages). Once sent, that message is handled by the service you chose, under its own privacy policy.</p>
+    <p>When you send a charge, the App opens the iOS share sheet with a message containing the place, items, amount, your Pix key, the code and a link to <code>lumaraysoftware.com/wetab/</code> that carries the code. If WeTab is installed, the link opens the App directly; otherwise it opens a page on our website that shows the code and a link to the App Store. That page runs in your browser, sends nothing to us and has no analytics. You choose where to send it (for example WhatsApp or Messages). Once sent, that message is handled by the service you chose, under its own privacy policy.</p>
 
     <h3>Camera and photos</h3>
-    <p>The camera is used only to read a receipt. Text recognition happens on your device using Apple's VisionKit and Vision frameworks. You can also pick a photo of a receipt: iOS's photo picker gives the App only the photo you choose, and the App does not ask for access to your library. Receipt images are not saved, not uploaded and not used for anything else.</p>
+    <p>The camera is used only to read a receipt. Text recognition happens on your device using Apple's VisionKit and Vision frameworks and, on iPhones that have it, Apple's on-device language model (Foundation Models) to tell items apart from the rest of the receipt. Nothing is sent to a server for this. You can also pick a photo of a receipt: iOS's photo picker gives the App only the photo you choose, and the App does not ask for access to your library. Receipt images are not saved, not uploaded and not used for anything else.</p>
 
     <h3>Notifications</h3>
     <p>The App uses iCloud push notifications to tell you when someone charges you, sends a reminder, opens your charge, says they've paid, confirms your payment or accepts your invite. The notification text (names, place and amount) is composed by Apple's iCloud from the charge record. Notifications are sent through Apple Push Notification service.</p>
+    <p>With WeTab Pro, you can also turn on payment reminders: local notifications that your iPhone schedules from your own bills, 2 and 5 days after a charge, to remind you who hasn't paid. They are created on your device and nothing is sent to us. You can switch them off in your profile.</p>
+
+    <h3>Widget and export (Pro)</h3>
+    <p>The “To receive” widget shows how much you're owed. The App writes a small summary (totals and names) to a storage area on your iPhone shared only with its own widget. Exporting creates a PDF or spreadsheet (CSV) of your bills on your device; it goes only where you choose to send or save it.</p>
+
+    <h3>WeTab Pro</h3>
+    <p>WeTab Pro is an optional subscription. Apple processes the payment through the App Store, and we never see your payment details. The App checks with Apple, on your device, whether your subscription is active. You can manage or cancel it in iOS Settings › [your name] › Subscriptions.</p>
 
     <h3>Clipboard</h3>
     <p>When you tap “Copy Pix,” the App puts that Pix key on the clipboard so you can paste it in your bank app. The App does not read your clipboard otherwise.</p>
 
     <h3>What the App doesn't do</h3>
-    <p>The App does not show ads, include analytics or crash-reporting tools, use third-party SDKs, track you across apps and websites, or access your location or contacts. The App does not process payments and has no in-app purchases: Pix transfers happen in your own bank's app.</p>
+    <p>The App does not show ads, include analytics or crash-reporting tools, use third-party SDKs, track you across apps and websites, or access your location or contacts. The App does not process payments between people: Pix transfers happen in your own bank's app.</p>
 
     <h2>2. How information is used</h2>
     <ul>
       <li>To provide the App's features: recording receipts, splitting them and keeping balances.</li>
       <li>To deliver charges, reminders, payment notices and invites to the people involved.</li>
       <li>To sync your data across your devices through iCloud.</li>
+      <li>To verify your WeTab Pro subscription.</li>
       <li>To keep the App secure and to answer you when you contact us.</li>
     </ul>
 
     <h2>3. Third-party services</h2>
     <ul>
-      <li><strong>Apple</strong>: Sign in with Apple, iCloud/CloudKit, Apple Push Notification service, VisionKit (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
+      <li><strong>Apple</strong>: Sign in with Apple, iCloud/CloudKit, Apple Push Notification service, VisionKit and Foundation Models, App Store purchases (<a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>)</li>
     </ul>
     <p>We do not sell, rent or share personal information for advertising. Apart from Apple, we disclose information only if required by law or to protect the rights and safety of our users or others.</p>
 
@@ -143,7 +151,7 @@
   <!-- ============================= PORTUGUÊS ============================= -->
   <article id="pt" lang="pt-BR" class="policy" data-lang-block="pt">
     <h1>Política de Privacidade</h1>
-    <p class="meta">Vigente desde 6 de outubro de 2026 · Última atualização em 6 de outubro de 2026</p>
+    <p class="meta">Vigente desde 6 de outubro de 2026 · Última atualização em 16 de novembro de 2026</p>
 
     <p>Esta Política de Privacidade explica como a LumaRay Software LLC (“nós”) trata as informações quando você usa o app WeTab para iPhone (o “App”), um app de divisão de contas que registra um recibo, marca quem consumiu cada item e cobra cada pessoa pela parte dela.</p>
 
@@ -153,7 +161,7 @@
         <li>Não mantemos servidores próprios. Seus recibos e saldos ficam no <strong>seu próprio iCloud privado</strong>, que nós não conseguimos ler.</li>
         <li>Quando você envia uma cobrança ou um convite, um pequeno registro vai para o <strong>banco de dados público do iCloud</strong> do App, para que a outra pessoa consiga vê-lo. Esse registro inclui seu nome e, se cadastrada, sua <strong>chave Pix</strong>.</li>
         <li>A leitura do recibo acontece no seu aparelho. Fotos de recibos não são salvas nem enviadas.</li>
-        <li>Sem anúncios, sem ferramentas de análise, sem rastreamento, sem SDKs de terceiros e sem compras dentro do App.</li>
+        <li>Sem anúncios, sem ferramentas de análise, sem rastreamento e sem SDKs de terceiros. A assinatura opcional WeTab Pro é processada inteiramente pela Apple.</li>
         <li>Perfil › Apagar meus dados apaga tudo o que o App guardou no iCloud, inclusive as cobranças que você enviou.</li>
       </ul>
     </aside>
@@ -181,32 +189,40 @@
     <p class="callout">Registros no banco público podem ser lidos por outros usuários do App através dos servidores do iCloud, e o código de acesso funciona como um link: quem tiver o código consegue abrir a cobrança. Como desenvolvedores, temos tecnicamente acesso a esses registros pelas ferramentas do CloudKit da Apple. Só os acessamos quando necessário para manter ou corrigir o App, ou quando exigido por lei. <strong>Seus saldos nunca vão para o banco público.</strong></p>
 
     <h3>Mensagens que você envia</h3>
-    <p>Ao enviar uma cobrança, o App abre a folha de compartilhamento do iOS com uma mensagem contendo o lugar, os itens, o valor, sua chave Pix, o código e um link <code>wetab://</code>. Você escolhe para onde mandar (por exemplo, WhatsApp ou Mensagens). Depois de enviada, a mensagem é tratada pelo serviço escolhido, conforme a política de privacidade dele.</p>
+    <p>Ao enviar uma cobrança, o App abre a folha de compartilhamento do iOS com uma mensagem contendo o lugar, os itens, o valor, sua chave Pix, o código e um link para <code>lumaraysoftware.com/wetab/</code> que leva o código. Se o WeTab estiver instalado, o link abre direto no App; senão, abre uma página do nosso site que mostra o código e um link para a App Store. Essa página roda no seu navegador, não nos envia nada e não tem ferramentas de análise. Você escolhe para onde mandar (por exemplo, WhatsApp ou Mensagens). Depois de enviada, a mensagem é tratada pelo serviço escolhido, conforme a política de privacidade dele.</p>
 
     <h3>Câmera e fotos</h3>
-    <p>A câmera é usada apenas para ler um recibo. O reconhecimento do texto acontece no seu aparelho, pelos frameworks VisionKit e Vision da Apple. Você também pode escolher uma foto do recibo: o seletor de fotos do iOS entrega ao App só a foto escolhida, e o App não pede acesso à sua galeria. As imagens dos recibos não são salvas, não são enviadas e não são usadas para mais nada.</p>
+    <p>A câmera é usada apenas para ler um recibo. O reconhecimento do texto acontece no seu aparelho, pelos frameworks VisionKit e Vision da Apple e, nos iPhones que têm, pelo modelo de linguagem da própria Apple que roda no aparelho (Foundation Models), para separar os itens do resto do recibo. Nada é enviado a um servidor para isso. Você também pode escolher uma foto do recibo: o seletor de fotos do iOS entrega ao App só a foto escolhida, e o App não pede acesso à sua galeria. As imagens dos recibos não são salvas, não são enviadas e não são usadas para mais nada.</p>
 
     <h3>Notificações</h3>
     <p>O App usa notificações do iCloud para avisar quando alguém te cobra, envia um lembrete, abre sua cobrança, avisa que pagou, confirma seu pagamento ou aceita seu convite. O texto do aviso (nomes, lugar e valor) é montado pelo iCloud da Apple a partir do registro da cobrança. As notificações são enviadas pelo serviço de notificações push da Apple.</p>
+    <p>Com o WeTab Pro, você também pode ligar lembretes de pagamento: notificações locais que o seu iPhone agenda a partir das suas próprias contas, 2 e 5 dias depois de uma cobrança, para lembrar quem ainda não pagou. Elas são criadas no seu aparelho e nada é enviado para nós. Você pode desligá-las no seu perfil.</p>
+
+    <h3>Widget e exportação (Pro)</h3>
+    <p>O widget “A receber” mostra quanto te devem. O App grava um pequeno resumo (totais e nomes) numa área do iPhone compartilhada só com o próprio widget. A exportação gera um PDF ou uma planilha (CSV) das suas contas no aparelho; o arquivo só vai para onde você escolher enviar ou salvar.</p>
+
+    <h3>WeTab Pro</h3>
+    <p>O WeTab Pro é uma assinatura opcional. A Apple processa o pagamento pela App Store, e nunca vemos seus dados de pagamento. O App confere com a Apple, no seu aparelho, se a assinatura está ativa. Você pode gerenciar ou cancelar em Ajustes do iOS › [seu nome] › Assinaturas.</p>
 
     <h3>Área de transferência</h3>
     <p>Quando você toca em “Copiar Pix”, o App coloca a chave na área de transferência para você colar no app do banco. Fora isso, o App não lê sua área de transferência.</p>
 
     <h3>O que o App não faz</h3>
-    <p>O App não exibe anúncios, não inclui ferramentas de análise ou de relatório de falhas, não usa SDKs de terceiros, não rastreia você entre apps e sites e não acessa sua localização nem seus contatos. O App não processa pagamentos e não tem compras dentro do app: as transferências Pix acontecem no app do seu banco.</p>
+    <p>O App não exibe anúncios, não inclui ferramentas de análise ou de relatório de falhas, não usa SDKs de terceiros, não rastreia você entre apps e sites e não acessa sua localização nem seus contatos. O App não processa pagamentos entre pessoas: as transferências Pix acontecem no app do seu banco.</p>
 
     <h2>2. Como as informações são usadas</h2>
     <ul>
       <li>Para oferecer os recursos do App: registrar recibos, dividi-los e manter os saldos.</li>
       <li>Para entregar cobranças, lembretes, avisos de pagamento e convites às pessoas envolvidas.</li>
       <li>Para sincronizar seus dados entre seus aparelhos pelo iCloud.</li>
+      <li>Para verificar sua assinatura do WeTab Pro.</li>
       <li>Para manter o App seguro e responder quando você entrar em contato.</li>
     </ul>
     <p>Para fins da LGPD, as bases legais são a execução do serviço que você solicitou, o seu consentimento (por exemplo, para câmera e notificações) e o nosso legítimo interesse em manter o App seguro.</p>
 
     <h2>3. Serviços de terceiros</h2>
     <ul>
-      <li><strong>Apple</strong>: Iniciar sessão com a Apple, iCloud/CloudKit, notificações push da Apple, VisionKit (<a href="https://www.apple.com/br/legal/privacy/">Política de Privacidade da Apple</a>)</li>
+      <li><strong>Apple</strong>: Iniciar sessão com a Apple, iCloud/CloudKit, notificações push da Apple, VisionKit e Foundation Models, compras na App Store (<a href="https://www.apple.com/br/legal/privacy/">Política de Privacidade da Apple</a>)</li>
     </ul>
     <p>Não vendemos, alugamos nem compartilhamos informações pessoais para publicidade. Além da Apple, só divulgamos informações quando exigido por lei ou para proteger os direitos e a segurança dos nossos usuários ou de terceiros.</p>
 
@@ -245,6 +261,6 @@
 <footer class="site-footer">
   © 2026 LumaRay Software LLC · <a href="../../privacy/"><span data-lang-block="en">Privacy</span><span data-lang-block="pt" lang="pt-BR">Privacidade</span></a> · <a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a>
 </footer>
-<script src="../../assets/site.js?v=88398404"></script>
+<script src="../../assets/site.js?v=3d41efa4"></script>
 </body>
 </html>

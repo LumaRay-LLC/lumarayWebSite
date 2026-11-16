@@ -22,9 +22,9 @@ APPS = [
 ]
 
 def head(r, title, desc, cls=""):
-    c = f' class="{cls}"' if cls else ""
+    c = f' class="{cls}"' if cls and cls != "home" else ""
     fonts = FONTS
-    if cls == "theme-nextchapter":
+    if cls in ("theme-nextchapter", "home"):
         fonts = FONTS.replace("family=Montserrat", "family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&family=Montserrat")
     return f'''<!doctype html>
 <html lang="en"{c}>
@@ -89,8 +89,100 @@ def write(path, s):
     os.makedirs(os.path.dirname(full), exist_ok=True)
     open(full, "w").write(s)
 
+def LI(en_src, pt_src, alt_en, alt_pt, cls="", lazy=True):
+    """The same picture in each language; site.js shows the one that matches."""
+    lz = ' loading="lazy" decoding="async"' if lazy else ""
+    c = f' class="{cls}"' if cls and cls != "home" else ""
+    if en_src == pt_src:
+        return f'<img{c} src="{en_src}" alt="{alt_en}"{lz}>'
+    return (f'<img{c} src="{en_src}" alt="{alt_en}" data-lang-block="en"{lz}>'
+            f'<img{c} src="{pt_src}" alt="{alt_pt}" data-lang-block="pt" lang="pt-BR"{lz}>')
+
+STORE = {
+    "wetab": "https://apps.apple.com/app/id6806273923",
+    "pantry-stock": "https://apps.apple.com/app/id6790430461",
+}
+
+# Art for each app, taken from its App Store assets. "frame" screens are raw
+# captures shown inside a drawn phone; "card" screens already carry their
+# own device and caption.
+SHOW = {
+    "next-chapter": dict(
+        banner=("shots/next-chapter/banner-en.jpg", "shots/next-chapter/banner-pt.jpg"),
+        style="frame",
+        shots=[
+            ("library", "library", ("Your library and current read", "Sua biblioteca e a leitura da vez")),
+            ("foryou", "foryou", ("Picks by genre", "Sugestões por gênero")),
+            ("club", "club", ("Book clubs with challenges", "Clubes do livro com desafios")),
+            ("bookdetail2", "bookdetail2", ("Add a book in a tap", "Adicione um livro num toque")),
+            ("profile", "profile", ("Your yearly reading quest", "Sua meta de leitura do ano")),
+        ],
+    ),
+    "wetab": dict(
+        banner=("shots/wetab/banner-en.jpg", "shots/wetab/banner-pt.jpg"),
+        style="frame",
+        shots=[(f"{n}-en", f"{n}-pt", c) for n, c in [
+            ("01-inicio", ("Who owes you, at a glance", "Quem te deve, num relance")),
+            ("03-itens", ("Items read from the receipt", "Itens lidos do recibo")),
+            ("04-quem-consumiu", ("Tap who had what", "Toque em quem consumiu o quê")),
+            ("06-cobranca-criada", ("Charges ready to send", "Cobranças prontas para enviar")),
+            ("09-acertar-contas", ("Settle up in a few transfers", "Acerte em poucas transferências")),
+            ("10-busca", ("Search bills and people", "Busque contas e pessoas")),
+        ]],
+    ),
+    "pantry-stock": dict(
+        banner=None,
+        style="card",
+        shots=[(f"{n}-en", f"{n}-pt", c) for n, c in [
+            ("01-pantry", ("Your pantry", "Sua despensa")),
+            ("04-expiry", ("Expiry dates", "Validade")),
+            ("07-spending", ("Monthly spending", "Gasto do mês")),
+            ("03-shopping", ("Shopping list", "Lista de compras")),
+            ("05-maintenance", ("Home care", "Manutenção da casa")),
+            ("09-aisles", ("Aisle order", "Ordem dos corredores")),
+        ]],
+    ),
+}
+
+def shot_src(r, slug, name):
+    return f"{r}assets/shots/{slug}/{name}.jpg"
+
+def art(r, slug, name, lazy=False):
+    """The big picture for an app: its store banner, or three framed screens."""
+    sh = SHOW[slug]
+    if sh["banner"]:
+        en, pt = sh["banner"]
+        return f'<div class="art-banner">{LI(r + "assets/" + en, r + "assets/" + pt, f"{name} on the App Store", f"{name} na App Store", lazy=lazy)}</div>'
+    trio = "".join(f'<div class="art-card">{LI(shot_src(r, slug, en), shot_src(r, slug, pt), cap[0], cap[1], lazy=lazy)}</div>'
+                   for en, pt, cap in sh["shots"][:3])
+    return f'<div class="art-trio">{trio}</div>'
+
+STORE_LABEL = ("Download on the App Store", "Baixar na App Store")
+APPLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9 0 0-2.8-1.1-2.8-4.2zM14 5.3c.7-.8 1.2-2 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>'
+
+def store_btn(slug):
+    if slug not in STORE:
+        return ""
+    return f'<a class="store-btn" href="{STORE[slug]}">{APPLE}{L(*STORE_LABEL)}</a>'
+
+HOME_BLURB = {
+    "next-chapter": ("Your reading quest log: track books, set yearly goals and run book clubs with friends.", "Seu diário de leitura: acompanhe livros, defina metas anuais e organize clubes do livro com amigos."),
+    "wetab": ("Scan the receipt, tap who had what, and charge everyone their share with Pix.", "Leia o recibo, marque quem consumiu o quê e cobre a parte de cada um com Pix."),
+    "pantry-stock": ("Keep track of what's at home with − and +, and get a shopping list when things run low.", "Controle o que tem em casa com − e +, e ganhe uma lista de compras quando algo estiver acabando."),
+}
+APP_ROWS = "\n".join(
+    f'''      <article class="app-row {cls}">
+        <div class="app-row-copy">
+          <img class="app-icon" src="assets/{icon}" alt="">
+          <h3>{name}</h3>
+          <p>{L(*HOME_BLURB[slug])}</p>
+          <div class="row-actions"><a class="go" href="{slug}/">{L("See the app →", "Conheça o app →")}</a>{store_btn(slug)}</div>
+        </div>
+        <a class="app-row-art" href="{slug}/" tabindex="-1" aria-hidden="true">{art("", slug, name, lazy=True)}</a>
+      </article>''' for slug, name, icon, cls in APPS)
+
 # ---------------------------------------------------------------- home
-home = head("", "LumaRay Software", "LumaRay Software LLC is an independent studio making focused, private iPhone apps: Next Chapter, WeTab and Pantry Stock.")
+home = head("", "LumaRay Software", "LumaRay Software LLC is an independent studio making focused, private iPhone apps: Next Chapter, WeTab and Pantry Stock.", "home")
 home += header("", "home")
 home += f'''<section class="hero-ocean">
   <img class="logo" src="assets/logo-tile.jpg" alt="LumaRay Software logo">
@@ -123,32 +215,15 @@ home += f'''<section class="hero-ocean">
       <div class="card"><span class="num">01</span><h3>{L("Your data, your iCloud", "Seus dados, seu iCloud")}</h3><p>{L("We don't run servers that store your data. It lives on your device and in your own private iCloud.", "Não mantemos servidores com os seus dados. Eles ficam no seu aparelho e no seu iCloud privado.")}</p></div>
       <div class="card"><span class="num">02</span><h3>{L("Native and light", "Nativos e leves")}</h3><p>{L("Built with Apple's own frameworks, with as few third-party SDKs as possible.", "Feitos com os frameworks da própria Apple, com o mínimo possível de SDKs de terceiros.")}</p></div>
       <div class="card"><span class="num">03</span><h3>{L("Honest privacy", "Privacidade honesta")}</h3><p>{L("Plain-language policies for every app, and a way to delete your data.", "Políticas em linguagem simples para cada app, e um jeito de apagar seus dados.")}</p></div>
-      <div class="card"><span class="num">04</span><h3>{L("English and Portuguese", "Inglês e português")}</h3><p>{L("Every app and page is made for both languages from day one.", "Todo app e toda página nascem nos dois idiomas.")}</p></div>
+      <div class="card"><span class="num">04</span><h3>{L("Made for many languages", "Feitos em vários idiomas")}</h3><p>{L("Every app is built in English and Portuguese from day one, and most also speak Spanish, French, Italian, German and more.", "Todo app nasce em português e inglês, e a maioria também fala espanhol, francês, italiano, alemão e outros.")}</p></div>
     </div>
   </section>
 
   <section id="apps">
     <p class="section-label">{L("Our apps", "Nossos apps")}</p>
     <h2 class="section-title">{L("Made by LumaRay", "Feitos pela LumaRay")}</h2>
-    <div class="grid">
-      <a class="card app-card" href="next-chapter/">
-        <img src="assets/next-chapter.png" alt="">
-        <h3>Next Chapter</h3>
-        <p>{L("Your reading quest log: track books, set yearly goals and run book clubs with friends.", "Seu diário de leitura: acompanhe livros, defina metas anuais e organize clubes do livro com amigos.")}</p>
-        <span class="go">{L("Learn more →", "Saiba mais →")}</span>
-      </a>
-      <a class="card app-card" href="wetab/">
-        <img src="assets/wetab.png" alt="">
-        <h3>WeTab</h3>
-        <p>{L("Scan the receipt, tap who had what, and charge everyone their share with Pix.", "Leia o recibo, marque quem consumiu o quê e cobre a parte de cada um com Pix.")}</p>
-        <span class="go">{L("Learn more →", "Saiba mais →")}</span>
-      </a>
-      <a class="card app-card" href="pantry-stock/">
-        <img src="assets/pantry-stock.png" alt="">
-        <h3>Pantry Stock</h3>
-        <p>{L("Keep track of what's at home with − and +, and get a shopping list when things run low.", "Controle o que tem em casa com − e +, e ganhe uma lista de compras quando algo estiver acabando.")}</p>
-        <span class="go">{L("Learn more →", "Saiba mais →")}</span>
-      </a>
+    <div class="app-rows">
+{APP_ROWS}
     </div>
   </section>
 
@@ -181,11 +256,16 @@ ICONS = {
     "cart": '<path d="M3 4h2.5l2 11h10.5l2-8H6.5"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>',
     "tag": '<path d="M3.5 12V4.5h7.5l9 9-7.5 7.5z"/><circle cx="8" cy="8.5" r="1.4"/>',
     "chart": '<path d="M5 19v-7M10 19V6M15 19v-4M20 19V9"/>',
+    "search": '<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/>',
+    "widget": '<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/>',
+    "calendar": '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+    "mic": '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4"/>',
+    "coin": '<circle cx="12" cy="12" r="8"/><path d="M14.5 9.5c-.5-1-1.4-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.6 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1.1 0-2-.5-2.5-1.5M12 6.5V8M12 16v1.5"/>',
 }
 icons = {
     "next-chapter": ["barcode", "target", "people", "cloud", "lock", "star"],
-    "wetab": ["receipt", "split", "percent", "send", "bell", "arrows"],
-    "pantry-stock": ["list", "plusminus", "bell", "cart", "tag", "chart"],
+    "wetab": ["receipt", "split", "percent", "send", "arrows", "search", "bell", "widget"],
+    "pantry-stock": ["list", "plusminus", "bell", "cart", "widget", "tag", "calendar", "coin", "chart"],
 }
 
 PRODUCTS = {
@@ -204,27 +284,32 @@ PRODUCTS = {
     ),
     "wetab": dict(
         tag=("Split the bill item by item. Charge with Pix.", "Divida a conta item por item. Cobre com Pix."),
-        intro=("WeTab turns the end of a dinner into a few taps: read the receipt, mark who had what, and send each person exactly their share with your Pix key. It keeps track of who owes whom, and lets people know when they've been charged.",
-               "O WeTab transforma o fim do jantar em poucos toques: leia o recibo, marque quem consumiu o quê e mande para cada pessoa exatamente a parte dela, com a sua chave Pix. Ele acompanha quem deve a quem e avisa as pessoas quando são cobradas."),
+        intro=("WeTab turns the end of a dinner into a few taps: read the receipt, mark who had what, and send each person exactly their share with your Pix key. It keeps track of who owes whom, and lets people know when they've been charged. Available in English, Portuguese, Spanish, French, Italian and German.",
+               "O WeTab transforma o fim do jantar em poucos toques: leia o recibo, marque quem consumiu o quê e mande para cada pessoa exatamente a parte dela, com a sua chave Pix. Ele acompanha quem deve a quem e avisa as pessoas quando são cobradas. Disponível em português, inglês, espanhol, francês, italiano e alemão."),
         features=[
-            (("Read the receipt", "Leia o recibo"), ("Point the camera or pick a photo. Items are read on your device.", "Aponte a câmera ou escolha uma foto. Os itens são lidos no próprio aparelho."), ""),
+            (("Read the receipt", "Leia o recibo"), ("Point the camera or pick a photo, even a card-machine slip or a tilted shot. Items are read on your device.", "Aponte a câmera ou escolha uma foto, até comprovante de maquininha ou foto torta. Os itens são lidos no próprio aparelho."), ""),
             (("Item by item", "Item por item"), ("Tap who had each item. Shared items split to the cent.", "Toque em quem consumiu cada item. Itens divididos são rateados até o centavo."), ""),
             (("Service charge, your way", "Serviço do seu jeito"), ("10%, 12%, 15% or a custom rate, or turn it off for the table.", "10%, 12%, 15% ou outra taxa, ou desligue para a mesa toda."), ""),
-            (("Charge with Pix", "Cobre com Pix"), ("Send each person a message with their items, amount and your Pix key.", "Mande para cada pessoa uma mensagem com os itens, o valor e sua chave Pix."), ""),
-            (("Know when they pay", "Saiba quando pagam"), ("Get notified when someone opens a charge or says they've paid.", "Receba aviso quando alguém abre a cobrança ou avisa que pagou."), ""),
-            (("Settle up", "Acertar contas"), ("See the fewest transfers that settle the whole group.", "Veja o mínimo de transferências que zera o grupo todo."), ""),
+            (("Charge with Pix", "Cobre com Pix"), ("Send each person their items, amount and your Pix key, with a link that opens right from WhatsApp.", "Mande para cada pessoa os itens, o valor e sua chave Pix, com um link que abre direto do WhatsApp."), ""),
+            (("Know when they pay", "Saiba quando pagam"), ("Get notified when someone opens a charge or says they've paid, and see the fewest transfers that settle the group.", "Receba aviso quando alguém abre a cobrança ou avisa que pagou, e veja o mínimo de transferências que zera o grupo."), ""),
+            (("Search bills and people", "Busque contas e pessoas"), ("Find a bill by place or item, and a person by name, right from the top of Home.", "Ache uma conta pelo lugar ou por um item, e uma pessoa pelo nome, no topo da tela inicial."), ""),
+            (("Reminders and export", "Lembretes e exportação"), ("Gentle reminders for whoever hasn't paid, and every bill as a PDF or spreadsheet.", "Lembretes para quem ainda não pagou, e todas as contas em PDF ou planilha."), "Pro"),
+            (("\u201cTo receive\u201d widget", "Widget \u201cA receber\u201d"), ("How much you're owed, on your Home Screen or Lock Screen. Everything else stays free.", "Quanto te devem, na tela inicial ou na tela bloqueada. O resto continua grátis."), "Pro"),
         ],
     ),
     "pantry-stock": dict(
         tag=("Know what's at home. Never run out.", "Saiba o que tem em casa. Nunca deixe faltar."),
-        intro=("Pantry Stock comes with a ready-made catalog of about 75 household supplies, from rice and coffee to detergent and toothpaste. Day to day, you just tap − and +. When something drops below its minimum, it lands on your shopping list.",
-               "O Pantry Stock (Despensa) já vem com um catálogo de cerca de 75 itens da casa, do arroz e café ao detergente e creme dental. No dia a dia, é só tocar em − e +. Quando algo fica abaixo do mínimo, ele vai para a sua lista de compras."),
+        intro=("Pantry Stock comes with a ready-made catalog of about 75 household supplies, from rice and coffee to detergent and toothpaste. Day to day, you just tap − and +. When something drops below its minimum, it lands on your shopping list. Plus unlocks unlimited items and brands; Pro adds everything else.",
+               "O Pantry Stock (Despensa) já vem com um catálogo de cerca de 75 itens da casa, do arroz e café ao detergente e creme dental. No dia a dia, é só tocar em − e +. Quando algo fica abaixo do mínimo, ele vai para a sua lista de compras. O Plus libera itens e marcas sem limite; o Pro traz todo o resto."),
         features=[
-            (("Ready-made catalog", "Catálogo pronto"), ("Food, cleaning and personal care items, filtered by your region.", "Alimentos, limpeza e higiene, filtrados pela sua região."), ""),
+            (("Ready-made catalog", "Catálogo pronto"), ("Food, cleaning and personal care items, filtered by your region. Add more from it anytime with +.", "Alimentos, limpeza e higiene, filtrados pela sua região. Adicione mais quando quiser pelo +."), ""),
             (("Big − and + buttons", "Botões − e + grandes"), ("Update quantities in a tap, by unit, weight or volume.", "Atualize quantidades com um toque, por unidade, peso ou volume."), ""),
-            (("Low-stock alerts", "Alertas de estoque baixo"), ("A heads-up when something runs low, plus a weekly pantry reminder.", "Aviso quando algo está acabando, e um lembrete semanal da despensa."), ""),
-            (("Automatic shopping list", "Lista de compras automática"), ("Organized by category. Tap to restock to your ideal amount.", "Organizada por categoria. Toque para repor até a quantidade ideal."), ""),
-            (("Brands and your own items", "Marcas e itens próprios"), ("Record the exact brand and model, and add anything else at home.", "Registre marca e modelo exatos, e cadastre qualquer outro item."), "Pro"),
+            (("Low-stock alerts", "Alertas de estoque baixo"), ("A heads-up when something runs low, plus a weekly pantry reminder. Items you haven't touched in 30 days are suggested for removal.", "Aviso quando algo está acabando, e um lembrete semanal da despensa. Itens parados há 30 dias são sugeridos para remoção."), ""),
+            (("Automatic shopping list", "Lista de compras automática"), ("Pick Minimum, Half or Target for each item, sort it in your store's aisle order and send it by WhatsApp, Messages or email.", "Escolha Mínimo, Metade ou Ideal para cada item, ordene pelos corredores do seu mercado e envie por WhatsApp, Mensagens ou e-mail."), ""),
+            (("Widget and Siri", "Widget e Siri"), ("See the shopping list on your Home Screen or Lock Screen, and tell Siri you ran out of coffee.", "Veja a lista de compras na tela inicial ou na tela bloqueada, e diga à Siri que o café acabou."), ""),
+            (("Brands and your own items", "Marcas e itens próprios"), ("Record the exact brand and model, and add as many items as you like.", "Registre marca e modelo exatos, e cadastre quantos itens quiser."), "Plus"),
+            (("Expiry dates and home care", "Validade e manutenção da casa"), ("An alert on the day something expires, and reminders to change the sheets, towels or sponge.", "Aviso no dia em que algo vence, e lembretes para trocar lençóis, toalhas ou esponja."), "Plus"),
+            (("Prices and monthly spending", "Preços e gasto do mês"), ("Record what you paid, compare with last time and see the month's spending by category.", "Registre quanto pagou, compare com a última compra e veja o gasto do mês por categoria."), "Pro"),
             (("Summaries, forecast and sharing", "Resumos, previsão e compartilhamento"), ("Weekly and monthly consumption, run-out forecasts, and a shopping list shared with your household.", "Consumo semanal e mensal, previsão de quando vai acabar e lista de compras compartilhada com a casa."), "Pro"),
         ],
     ),
@@ -232,19 +317,34 @@ PRODUCTS = {
 
 for slug, name, icon, cls in APPS:
     p = PRODUCTS[slug]
+    sh = SHOW[slug]
     s = head("../", name, f"{name} by LumaRay Software: {p['tag'][0]}", cls)
     s += header("../", slug)
-    s += f'''<main class="page">
-  <section class="product-hero">
-    <img src="../assets/{icon}" alt="{name} app icon">
-    <div>
+    s += f'''<main class="page wide product">
+  <section class="showcase">
+    <div class="showcase-copy">
+      <img class="app-icon" src="../assets/{icon}" alt="{name} app icon">
       <h1>{name}</h1>
-      <p>{L(*p["tag"])}</p>
+      <p class="tagline">{L(*p["tag"])}</p>
+      <p class="lead" data-lang-block="en">{p["intro"][0]}</p>
+      <p class="lead" data-lang-block="pt" lang="pt-BR">{p["intro"][1]}</p>
+      <div class="row-actions">{store_btn(slug)}<a class="go" href="privacy/">{L("Privacy Policy", "Política de Privacidade")}</a></div>
     </div>
+    <div class="showcase-art">{art("../", slug, name)}</div>
   </section>
-  {subtabs("../", slug, "overview")}
-  <p class="lead" data-lang-block="en">{p["intro"][0]}</p>
-  <p class="lead" data-lang-block="pt" lang="pt-BR">{p["intro"][1]}</p>
+
+  <section class="screens" aria-labelledby="screens-h">
+    <h2 id="screens-h">{L("Inside the app", "Por dentro do app")}</h2>
+    <div class="strip {sh["style"]}" tabindex="0">
+'''
+    for en, pt, cap in sh["shots"]:
+        img = LI(shot_src("../", slug, en), shot_src("../", slug, pt), cap[0], cap[1])
+        if sh["style"] == "frame":
+            s += f'      <figure><div class="phone">{img}</div><figcaption>{L(*cap)}</figcaption></figure>\n'
+        else:
+            s += f'      <figure class="shot-card">{img}</figure>\n'
+    s += f'''    </div>
+  </section>
 
   <h2>{L("Features", "Recursos")}</h2>
   <ul class="features">
@@ -313,8 +413,8 @@ for slug, name, icon, _ in APPS:
 s += f'''  </ul>
 
   <h2>{L("This website", "Este site")}</h2>
-  <p data-lang-block="en">This website has no accounts, forms, cookies or analytics. It remembers your language choice in your browser's local storage, which never leaves your device. Fonts are loaded from Google Fonts, which receives your IP address when the page loads (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>).</p>
-  <p data-lang-block="pt" lang="pt-BR">Este site não tem contas, formulários, cookies nem ferramentas de análise. Ele lembra o idioma escolhido no armazenamento local do seu navegador, que nunca sai do seu aparelho. As fontes são carregadas do Google Fonts, que recebe o seu endereço IP quando a página abre (<a href="https://policies.google.com/privacy?hl=pt-BR">Política de Privacidade do Google</a>).</p>
+  <p data-lang-block="en">This website has no accounts, forms, cookies or analytics. It picks the starting language from your device's time zone, read in your browser and never sent anywhere, and remembers your language choice in your browser's local storage, which never leaves your device. Fonts are loaded from Google Fonts, which receives your IP address when the page loads (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>).</p>
+  <p data-lang-block="pt" lang="pt-BR">Este site não tem contas, formulários, cookies nem ferramentas de análise. Ele escolhe o idioma inicial pelo fuso horário do seu aparelho, lido no seu navegador e nunca enviado a lugar nenhum, e lembra o idioma escolhido no armazenamento local do seu navegador, que nunca sai do seu aparelho. As fontes são carregadas do Google Fonts, que recebe o seu endereço IP quando a página abre (<a href="https://policies.google.com/privacy?hl=pt-BR">Política de Privacidade do Google</a>).</p>
 
   <h2>{L("Contact", "Contato")}</h2>
   <p>LumaRay Software LLC<br><a href="mailto:lumaraysoftware@gmail.com">lumaraysoftware@gmail.com</a></p>
